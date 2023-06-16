@@ -10,7 +10,10 @@ type
     FApiKey: string;
     FPluginLogFileName: string;
     FCLIPath: string;
+    FUserProfilePath: string;
   public
+    constructor Create;
+
     procedure Load;
     procedure Save;
 
@@ -116,18 +119,20 @@ const
   {$ENDIF}
 
 
+constructor TWakaTimeSettings.Create;
+begin
+  FUserProfilePath := GetEnvironmentVariable('USERPROFILE');
+  FCLIPath := FUserProfilePath + '\.wakatime\';
+end;
+
 procedure TWakaTimeSettings.Load;
 var
   IniFile: TIniFile;
-  UserProfilePath: string;
 begin
-  UserProfilePath := GetEnvironmentVariable('USERPROFILE');
-
-  IniFile := TIniFile.Create(UserProfilePath + WakaTimeConfigFile);
+  IniFile := TIniFile.Create(FUserProfilePath + WakaTimeConfigFile);
   try
     FApiKey := IniFile.ReadString('settings', 'api_key', '');
     FDebug  := StrToBool(IniFile.ReadString('settings', 'debug', 'False'));
-    FCLIPath := UserProfilePath + '\.wakatime\';
     FPluginLogFileName := FCLIPath + WakaPluginLogFileName;
   finally
     IniFile.Free;
@@ -138,8 +143,7 @@ procedure TWakaTimeSettings.Save;
 var
   IniFile: TIniFile;
 begin
-  IniFile := TIniFile.Create(GetEnvironmentVariable('USERPROFILE') +
-    WakaTimeConfigFile);
+  IniFile := TIniFile.Create(FUserProfilePath + WakaTimeConfigFile);
   try
     IniFile.WriteString('settings', 'api_key', FApiKey);
     IniFile.WriteString('settings', 'debug', BoolToStr(FDebug, True));
