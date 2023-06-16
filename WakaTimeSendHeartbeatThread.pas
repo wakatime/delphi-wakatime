@@ -104,11 +104,16 @@ const
 
 constructor TSendHeartbeatThread.Create(FileName, ProjectName: string; IsFile:
   Boolean; TotalLines: Integer; IsWrite: Boolean);
+
+  function FixProjectName: string;
+  begin
+    Result := ChangeFileExt(ProjectName, '');
+  end;
 begin
   inherited Create(False);
   FreeOnTerminate := True;
   FFileName := FileName;
-  FProjectName := ProjectName;
+  FProjectName := FixProjectName;
   FIsFile := IsFile;
   FTotalLines := TotalLines;
   FIsWrite := IsWrite;
@@ -128,7 +133,7 @@ begin
 
   // Prepare the command line
   CommandLine :=
-    Format('"%swakatime-cli" --entity "%s" --lines-in-file %d --plugin "%s"', [WakaSettings.CLIPath, FFileName, FTotalLines, UserAgent]);
+    Format('"%swakatime-cli" --entity "%s" --lines-in-file %d --alternate-project "%s" --plugin "%s"', [WakaSettings.CLIPath, FFileName, FTotalLines, FProjectName, UserAgent]);
 
   if FIsWrite then
     CommandLine := CommandLine + ' --write';
