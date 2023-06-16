@@ -83,5 +83,7 @@ Before start close all projects opened on your Delphi IDE.
 ## Possible Improvements
 
 1- Add support to IOTAFormNotifier and send the heartbeat on form save or changed. It doesn't affect anything now but I have to test it to see if it worth to implment it.
+
 2- Add a inno setup installer to simplify the process of installing. 
+
 3- Add to some package manager?
