@@ -16,7 +16,7 @@ The goal of this project is to provide a full integration with WakaTime with Del
 
 > It should work with any other IDE version up from D7 but it should be tested. If you have any other version and want to colaborate just go to the section **Adding to new IDE**. 
 
-## Support this plugin's author ([@diegomgarcia](https://github.com/diegomgarcia]) by becoming a Patreon
+## Support this plugin's author ([@diegomgarcia](https://github.com/diegomgarcia)) with Patreon
 
 [![Patreon](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/dmgarcia)
 
