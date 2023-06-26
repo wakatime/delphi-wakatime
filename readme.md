@@ -30,13 +30,7 @@ You can also show support by showing on your repository that you use this lib on
 
 1- Clone this repository.
 
-2- Create a directory named **.wakatime** on your current user profile directory "C:\Users\diego.garcia\\.wakatime"
-
-3- Download the wakatime-cli for windows from the wakatime-cli github direct link [here](https://github.com/wakatime/wakatime-cli/releases/download/v1.73.1/wakatime-cli-windows-386.zip) 
-
-4- Extract into the **.wakatime** directory and rename the file to **wakatime-cli.exe**
-
-5- Open the project related to your IDE version: 
+2- Open the project related to your IDE version: 
 
 - WakaTimePlugin10_2.dproj - For Delphi 10.2
 - WakaTimePluginXE2.dproj  - For Delphi XE2 
@@ -44,13 +38,13 @@ You can also show support by showing on your repository that you use this lib on
 
 > Note: If your IDE is not listed here, don't be afraid, just go to the section **Adding to new IDE** and get back here after to continue.
 
-6- Build and Install
+3- Build and Install
 
-7- Close the project
+4- Close the project
 
-8- Go to the **Tools** menu and access the new **WakaTime Settings** menu.
+5- Go to the **Tools** menu and access the new **WakaTime Settings** menu.
 
-9- Insert your WakaTime API key and hit OK.
+6- Insert your WakaTime API key and hit OK.
 
 **Tip** To get you WakaTime API Key go to your WakaTime account, click on you avatar the on settings and you will see a section named API Key with a text Secret API Key and a button to copy, just click on copy button and paste it on the settings of the plugin.
 
@@ -71,7 +65,7 @@ Before start close all projects opened on your Delphi IDE.
 
 5- Now just save again and build your new plugin project, the IDE might ask to add reference to rtl, just click on ok and continue the build.
 
-6- Install the package on IDE and get back to the step 7 of the section **How should I use?**
+6- Install the package on IDE and get back to the step 3 of the section **How should I use?**
 
 > Note: Don't forget, after you test the plugin with your new IDE you can make a PR here so we can update the supported IDE list.
 
@@ -79,6 +73,18 @@ Before start close all projects opened on your Delphi IDE.
 ## Know Issues
 
 1- Before remove the package close all files on editor, or you will get an invalid pointer operation. For some reason removing the reference on package removal with the files opened on editor is trying to remove the reference more then one time, causing this error. I'm investigating the root cause.
+
+2- On delphi 7 sometimes after compiling and clicking on install the IDE hangs and closes, just open the IDE again and install add the bpl using the menu -> component -> install packages -> add -> select the bpl compiled inside the path: C:\Program Files\Borland\Projects\Bpl\WakatimeD7.bpl
+
+3- If for some reason you note that your wakatime plugin is not working take a look at the logs of the auto installation at the .wakatime directory on your users profile path, something like that: C:\Users\diego.garcia\.wakatime\install.log
+
+## Manual installation 
+
+1- Create a directory named **.wakatime** on your current user profile directory "C:\Users\diego.garcia\\.wakatime"
+
+2- Download the wakatime-cli for windows from the wakatime-cli github direct link [here](https://github.com/wakatime/wakatime-cli/releases/download/v1.73.1/wakatime-cli-windows-386.zip) 
+
+3- Extract into the **.wakatime** directory and rename the file to **wakatime-cli.exe**
 
 ## Possible Improvements
 
