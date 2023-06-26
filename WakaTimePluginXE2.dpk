@@ -37,6 +37,8 @@ contains
   WakaTimeNotifier in 'WakaTimeNotifier.pas',
   WakaTimeSendHeartbeatThread in 'WakaTimeSendHeartbeatThread.pas',
   WakaTimeSettings in 'WakaTimeSettings.pas',
-  WakaTimeHeartbeatSender in 'WakaTimeHeartbeatSender.pas';
+  WakaTimeHeartbeatSender in 'WakaTimeHeartbeatSender.pas',
+  WakaTimeCLIInstaller in 'WakaTimeCLIInstaller.pas',
+  WakaTimeCLIInstallerThread in 'WakaTimeCLIInstallerThread.pas';
 
 end.

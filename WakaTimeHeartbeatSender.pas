@@ -19,6 +19,8 @@ type
 
 implementation
 
+uses WakaTimeSettings;
+
 function TWakaTimeHeartbeatSender.EnoughTimeHasPassed: Boolean;
 begin
   Result := Now - FLastSentTime > EncodeTime(0, 2, 0, 0);  // 2 minutes
@@ -33,7 +35,7 @@ end;
 
 procedure TWakaTimeHeartbeatSender.SendHeartbeat(const FileName: string; ProjectName: string; TotalLines: Integer; IsFileSavedEvent: Boolean);
 begin
-  if EnoughTimeHasPassed or CurrentlyFocusedFileHasChanged(FileName) or IsFileSavedEvent then
+  if WakaSettings.CLIInstalled and (EnoughTimeHasPassed or CurrentlyFocusedFileHasChanged(FileName) or IsFileSavedEvent) then
   begin
     TSendHeartbeatThread.Create(FileName, ProjectName, FileName <> '',
       TotalLines, IsFileSavedEvent);

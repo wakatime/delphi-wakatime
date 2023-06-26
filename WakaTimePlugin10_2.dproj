@@ -83,6 +83,8 @@
         <DCCReference Include="WakaTimeSendHeartbeatThread.pas"/>
         <DCCReference Include="WakaTimeSettings.pas"/>
         <DCCReference Include="WakaTimeHeartbeatSender.pas"/>
+        <DCCReference Include="WakaTimeCLIInstaller.pas"/>
+        <DCCReference Include="WakaTimeCLIInstallerThread.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -109,7 +111,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="..\..\..\..\..\..\Public\Documents\Embarcadero\Studio\19.0\Bpl\WakaTimePlugin10_2.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\19.0\Bpl\WakaTimePlugin10_2.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>WakaTimePlugin10_2.bpl</RemoteName>
                         <Overwrite>true</Overwrite>

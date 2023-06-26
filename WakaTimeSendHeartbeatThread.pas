@@ -128,7 +128,7 @@ var
   Directory: PChar;
   ShowCommand: Integer;
 begin
-  if WakaSettings.ApiKey = '' then
+  if not WakaSettings.CLIInstalled or (WakaSettings.ApiKey = '') then
     exit;
 
   // Prepare the command line

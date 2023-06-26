@@ -26,7 +26,8 @@ package WakaTimePluginD7;
 
 requires
   rtl,
-  designide;
+  designide,
+  vcl;
 
 contains
   WakaTimeNotifier in 'WakaTimeNotifier.pas',
@@ -34,6 +35,8 @@ contains
   WakaTimeLogger in 'WakaTimeLogger.pas',
   WakaSettingsForm in 'WakaSettingsForm.pas' {WakaTimeSettingsForm},
   WakaTimeSettings in 'WakaTimeSettings.pas',
-  WakaTimeHeartbeatSender in 'WakaTimeHeartbeatSender.pas';
+  WakaTimeHeartbeatSender in 'WakaTimeHeartbeatSender.pas',
+  WakaTimeCLIInstaller in 'WakaTimeCLIInstaller.pas',
+  WakaTimeCLIInstallerThread in 'WakaTimeCLIInstallerThread.pas';
 
 end.

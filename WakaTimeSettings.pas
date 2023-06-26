@@ -2,6 +2,8 @@ unit WakaTimeSettings;
 
 interface
 
+uses WakaTimeCLIInstaller, WakaTimeCLIInstallerThread;
+
 
 type
   TWakaTimeSettings = class
@@ -11,8 +13,12 @@ type
     FPluginLogFileName: string;
     FCLIPath: string;
     FUserProfilePath: string;
+    FWakaTimeInstaller: TWakaTimeCLIInstallerThread;
+  private  
+    function GetCLIInstalled: Boolean;
   public
     constructor Create;
+    destructor Destroy; override;
 
     procedure Load;
     procedure Save;
@@ -20,7 +26,9 @@ type
     property ApiKey: string read FApiKey write FApiKey;
     property Debug: Boolean read FDebug write FDebug;
     property PluginLogFileName: string read FPluginLogFileName;
+
     property CLIPath: string read FCLIPath;
+    property CLIInstalled: Boolean read GetCLIInstalled;
   end;
 
 
@@ -43,7 +51,7 @@ begin
    begin
      _WakaSettings := TWakaTimeSettings.Create;
      if AutoLoad then
-      _WakaSettings.Load;
+       _WakaSettings.Load;
    end;
 
   Result := _WakaSettings;
@@ -123,6 +131,18 @@ constructor TWakaTimeSettings.Create;
 begin
   FUserProfilePath := GetEnvironmentVariable('USERPROFILE');
   FCLIPath := FUserProfilePath + '\.wakatime\';
+  FWakaTimeInstaller := TWakaTimeCLIInstallerThread.Create(FCLIPath);
+end;
+
+destructor TWakaTimeSettings.Destroy;
+begin
+  FreeAndNil(FWakaTimeInstaller);
+  inherited;
+end;
+
+function TWakaTimeSettings.GetCLIInstalled: Boolean;
+begin
+  Result := DirectoryExists(FCLIPath) and FileExists(FCLIPath+'wakatime-cli.exe');
 end;
 
 procedure TWakaTimeSettings.Load;
