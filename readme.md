@@ -74,7 +74,7 @@ Before start close all projects opened on your Delphi IDE.
 
 1- Before remove the package close all files on editor, or you will get an invalid pointer operation. For some reason removing the reference on package removal with the files opened on editor is trying to remove the reference more then one time, causing this error. I'm investigating the root cause.
 
-2- On delphi 7 sometimes after compiling and clicking on install the IDE hangs and closes, just open the IDE again and install add the bpl using the menu -> component -> install packages -> add -> select the bpl compiled inside the path: C:\Program Files\Borland\Projects\Bpl\WakatimeD7.bpl
+2- On delphi 7 sometimes after compiling and clicking on install the IDE hangs and closes, just open the IDE again and add the bpl using the menu -> component -> install packages -> add -> select the bpl compiled inside the path: C:\Program Files\Borland\Projects\Bpl\WakatimeD7.bpl
 
 3- If for some reason you note that your wakatime plugin is not working take a look at the logs of the auto installation at the .wakatime directory on your users profile path, something like that: C:\Users\diego.garcia\.wakatime\install.log
 
