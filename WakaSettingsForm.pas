@@ -64,8 +64,11 @@ end;
 
 procedure Register;
 begin
-  MenuCreationTimer := TWakaTimeTimer.Create(nil);
-  TWakaTimeLogger.Log('WakaTimeTimer Created');
+  if MenuCreationTimer = nil then
+   begin
+    MenuCreationTimer := TWakaTimeTimer.Create(nil);
+    TWakaTimeLogger.Log('WakaTimeTimer Created');
+   end;
 end;
 
 
