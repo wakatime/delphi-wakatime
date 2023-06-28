@@ -139,7 +139,7 @@ begin
 
   // Prepare the command line
   CommandLine :=
-    Format('""%swakatime-cli.exe" --entity "%s" --lines-in-file %d --alternate-project "%s" --plugin "%s""', [FCLIPath, FFileName, FTotalLines, FProjectName, UserAgent]);
+    Format('"%swakatime-cli.exe" --entity "%s" --lines-in-file %d --alternate-project "%s" --plugin "%s"', [FCLIPath, FFileName, FTotalLines, FProjectName, UserAgent]);
 
   if FIsWrite then
     CommandLine := CommandLine + ' --write';
@@ -147,7 +147,7 @@ begin
   // Set the parameters for ShellExecute
   Operation := 'open';
   FileName := 'cmd.exe';
-  Parameters := PChar('/c ' + CommandLine);
+  Parameters := PChar('/c "' + CommandLine + '"');
   Directory := nil;
   ShowCommand := SW_HIDE; // Use SW_SHOW to show the command prompt window
 
