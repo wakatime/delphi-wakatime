@@ -142,7 +142,7 @@ end;
 
 function TWakaTimeSettings.GetCLIInstalled: Boolean;
 begin
-  Result := DirectoryExists(FCLIPath) and FileExists(FCLIPath+'wakatime-cli.exe');
+  Result := FileExists(FCLIPath+'wakatime-cli.exe');
 end;
 
 procedure TWakaTimeSettings.Load;
