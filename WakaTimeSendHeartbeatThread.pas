@@ -8,6 +8,8 @@ uses
 type
   TSendHeartbeatThread = class(TThread)
   private
+    FCLIPath: string;
+    FAPIKey: string;
     FFileName: string;
     FProjectName: string;
     FIsFile: Boolean;
@@ -16,7 +18,7 @@ type
   protected
     procedure Execute; override;
   public
-    constructor Create(FileName, ProjectName: string; IsFile: Boolean;
+    constructor Create(CLIPath, APIKey, FileName, ProjectName: string; IsFile: Boolean;
       TotalLines: Integer; IsWrite: Boolean);
   end;
 
@@ -28,8 +30,7 @@ uses
   Windows,
   ShellAPI,
   WakaTimeLogger,
-  StrUtils,
-  WakaTimeSettings;
+  StrUtils;
 
 const
   PluginVersion = '1.0.0'; // Replace with actual plugin version
@@ -102,7 +103,7 @@ const
 
 
 
-constructor TSendHeartbeatThread.Create(FileName, ProjectName: string; IsFile:
+constructor TSendHeartbeatThread.Create(CLIPath, APIKey, FileName, ProjectName: string; IsFile:
   Boolean; TotalLines: Integer; IsWrite: Boolean);
 
   function FixProjectName: string;
@@ -112,6 +113,8 @@ constructor TSendHeartbeatThread.Create(FileName, ProjectName: string; IsFile:
 begin
   inherited Create(False);
   FreeOnTerminate := True;
+  FClIPath := CLIPath;
+  FAPIKey := APIKey;
   FFileName := FileName;
   FProjectName := FixProjectName;
   FIsFile := IsFile;
@@ -128,12 +131,15 @@ var
   Directory: PChar;
   ShowCommand: Integer;
 begin
-  if (WakaSettings.ApiKey = '') then
+  if (FAPIKey = '') then
+   begin
+    TWakaTimeLogger.Log('ApiKey not found =(');
     exit;
+   end;
 
   // Prepare the command line
   CommandLine :=
-    Format('"%swakatime-cli" --entity "%s" --lines-in-file %d --alternate-project "%s" --plugin "%s"', [WakaSettings.CLIPath, FFileName, FTotalLines, FProjectName, UserAgent]);
+    Format('""%swakatime-cli.exe" --entity "%s" --lines-in-file %d --alternate-project "%s" --plugin "%s""', [FCLIPath, FFileName, FTotalLines, FProjectName, UserAgent]);
 
   if FIsWrite then
     CommandLine := CommandLine + ' --write';
@@ -150,6 +156,8 @@ begin
   try
     // Execute the command
     ShellExecute(0, Operation, FileName, Parameters, Directory, ShowCommand);
+
+    TWakaTimeLogger.Log('Command executed.');
 
   except
     on E: Exception do
