@@ -175,6 +175,7 @@ end;
 initialization
 
 finalization
-  _WakaSettings.Free;
+ if Assigned(_WakaSettings) then
+  FreeAndNil(_WakaSettings);
 
 end.

@@ -8,7 +8,6 @@ uses
 type
   TWakaTimeCLIInstallerThread = class(TThread)
   private
-    FCLIPath: string;
     FInstaller: TWakaTimeCLIInstaller;
   protected
     procedure Execute; override;
@@ -23,8 +22,7 @@ constructor TWakaTimeCLIInstallerThread.Create(const CLIPath: string);
 begin
   inherited Create(False); // Create the thread in suspended state
   FreeOnTerminate := True; // Automatically deallocate memory on finish
-  FCLIPath := CLIPath;
-  FInstaller := TWakaTimeCLIInstaller.Create(FCLIPath);
+  FInstaller := TWakaTimeCLIInstaller.Create(CLIPath);
 end;
 
 destructor TWakaTimeCLIInstallerThread.Destroy;

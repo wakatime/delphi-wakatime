@@ -37,7 +37,7 @@ procedure TWakaTimeHeartbeatSender.SendHeartbeat(const FileName: string; Project
 begin
   if EnoughTimeHasPassed or CurrentlyFocusedFileHasChanged(FileName) or IsFileSavedEvent then
   begin
-    TSendHeartbeatThread.Create(FileName, ProjectName, FileName <> '',
+    TSendHeartbeatThread.Create(WakaSettings.CLIPath, WakaSettings.ApiKey, FileName, ProjectName, FileName <> '',
       TotalLines, IsFileSavedEvent);
 
     // Update the last sent file and time

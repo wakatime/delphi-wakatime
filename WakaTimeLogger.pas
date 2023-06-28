@@ -18,10 +18,9 @@ implementation
 
 uses WakaTimeSettings;
 
+class procedure TWakaTimeLogger.InternalLog(const Msg, FileName: string);
 var
   LogFile: TextFile;
-
-class procedure TWakaTimeLogger.InternalLog(const Msg, FileName: string);
 begin
   try
     // Assign file variable
@@ -50,8 +49,7 @@ var
   LogFileName: string;
 begin
   // Check if debug mode is enabled
-  if not WakaSettings.CLIInstalled or
-     not WakaSettings.Debug then
+  if not WakaSettings.Debug then
     Exit;
 
   // Define the log file name
