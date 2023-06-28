@@ -50,7 +50,8 @@ var
   LogFileName: string;
 begin
   // Check if debug mode is enabled
-  if not WakaSettings.CLIInstalled and not WakaSettings.Debug then
+  if not WakaSettings.CLIInstalled or
+     not WakaSettings.Debug then
     Exit;
 
   // Define the log file name
