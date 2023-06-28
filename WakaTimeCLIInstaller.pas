@@ -84,19 +84,23 @@ end;
 
 function TWakaTimeCLIInstaller.IsCliLatest: Boolean;
 var
-  PowerShellCmd, InstalledVersion, LatestVersion: string;
+  PowerShellCmd, WakaTimeCLI, InstalledVersion, LatestVersion: string;
 begin
   TWakaTimeLogger.LogInstall('Checking wakatime version');
 
-  if not FileExists(FCLIPath+'wakatime-cli.exe') then
+  WakaTimeCLI := FCLIPath+'wakatime-cli.exe';
+
+  TWakaTimeLogger.LogInstall('WakaTimeCLI: '+WakaTimeCLI);
+
+  if not FileExists(WakaTimeCLI) then
     begin
-      TWakaTimeLogger.Log('Checking wakatime version finished, no cli installed yet');
+      TWakaTimeLogger.LogInstall('Checking wakatime version finished, no cli installed yet');
       Result := False;
       Exit;
     end;
 
   // Get installed version
-  PowerShellCmd := 'powershell.exe -noprofile -command "& { .\wakatime-cli --version }"';
+  PowerShellCmd := Format('powershell.exe -noprofile -command "& { %swakatime-cli --version }"', [FCLIPath]);
   InstalledVersion := RunAndWait(PowerShellCmd);
 
   // Get latest version
