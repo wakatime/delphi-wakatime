@@ -109,6 +109,13 @@ begin
     '| ConvertFrom-Json).tag_name }"';
   LatestVersion := RunAndWait(PowerShellCmd);
 
+  if LatestVersion = '' then
+   begin
+     TWakaTimeLogger.LogInstall('Failed to get latest version.');
+     Result := True;
+     Exit;
+   end;
+
   Result := InstalledVersion = LatestVersion;
 
   TWakaTimeLogger.LogInstall('Checking wakatime version finished');
