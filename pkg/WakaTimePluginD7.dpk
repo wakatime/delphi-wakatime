@@ -1,0 +1,42 @@
+package WakaTimePluginD7;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  designide,
+  vcl;
+
+contains
+  WakaSettingsForm in '..\src\WakaSettingsForm.pas' {WakaTimeSettingsForm},
+  WakaTimeCLIInstaller in '..\src\WakaTimeCLIInstaller.pas',
+  WakaTimeCLIInstallerThread in '..\src\WakaTimeCLIInstallerThread.pas',
+  WakaTimeHeartbeatSender in '..\src\WakaTimeHeartbeatSender.pas',
+  WakaTimeLogger in '..\src\WakaTimeLogger.pas',
+  WakaTimeNotifier in '..\src\WakaTimeNotifier.pas',
+  WakaTimeSendHeartbeatThread in '..\src\WakaTimeSendHeartbeatThread.pas',
+  WakaTimeSettings in '..\src\WakaTimeSettings.pas';
+
+end.

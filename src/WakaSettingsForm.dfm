@@ -1,6 +1,6 @@
 object WakaTimeSettingsForm: TWakaTimeSettingsForm
-  Left = 559
-  Top = 269
+  Left = 87
+  Top = 251
   BorderStyle = bsDialog
   Caption = 'WakaTime Settings'
   ClientHeight = 143
@@ -11,9 +11,7 @@ object WakaTimeSettingsForm: TWakaTimeSettingsForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
-  Position = poDesktopCenter
-  PixelsPerInch = 96
+  Position = poOwnerFormCenter
   TextHeight = 13
   object Label1: TLabel
     Left = 16
