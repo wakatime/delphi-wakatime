@@ -10,6 +10,7 @@ The goal of this project is to provide a full integration with WakaTime with Del
 
 ## Currently supported and Tested IDE's
 
+- Delphi 11.3
 - Delphi 10.2
 - Delphi XE2
 - Delphi 7
@@ -32,6 +33,7 @@ You can also show support by showing on your repository that you use this lib on
 
 2- Open the project related to your IDE version: 
 
+- WakaTimePlugin11_3.dproj - For Delphi 11.3
 - WakaTimePlugin10_2.dproj - For Delphi 10.2
 - WakaTimePluginXE2.dproj  - For Delphi XE2 
 - WakaTimePluginD7.dpr     - For Delphi 7
@@ -48,6 +50,7 @@ You can also show support by showing on your repository that you use this lib on
 
 **Tip** To get you WakaTime API Key go to your WakaTime account, click on you avatar the on settings and you will see a section named API Key with a text Secret API Key and a button to copy, just click on copy button and paste it on the settings of the plugin.
 
+>If you use GetIt Package Manager, this package can be installed from there.
 
 ## Adding to new IDE
 
@@ -76,7 +79,7 @@ Before start close all projects opened on your Delphi IDE.
 
 2- On delphi 7 sometimes after compiling and clicking on install the IDE hangs and closes, just open the IDE again and add the bpl using the menu -> component -> install packages -> add -> select the bpl compiled inside the path: C:\Program Files\Borland\Projects\Bpl\WakatimeD7.bpl
 
-3- If for some reason you note that your wakatime plugin is not working take a look at the logs of the auto installation at the .wakatime directory on your users profile path, something like that: C:\Users\diego.garcia\.wakatime\install.log
+3- If for some reason you note that your wakatime plugin is not working take a look at the logs of the auto installation at the .wakatime directory on your users profile path, something like that: C:\Users\diego.garcia\.wakatime\install.log also certify that your windows have powershell installed on it as the auto install/update relys on it.
 
 ## Manual installation 
 
