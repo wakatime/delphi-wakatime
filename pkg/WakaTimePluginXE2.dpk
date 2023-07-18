@@ -32,13 +32,13 @@ requires
   designide;
 
 contains
-  WakaSettingsForm in 'WakaSettingsForm.pas' {WakaTimeSettingsForm},
-  WakaTimeLogger in 'WakaTimeLogger.pas',
-  WakaTimeNotifier in 'WakaTimeNotifier.pas',
-  WakaTimeSendHeartbeatThread in 'WakaTimeSendHeartbeatThread.pas',
-  WakaTimeSettings in 'WakaTimeSettings.pas',
-  WakaTimeHeartbeatSender in 'WakaTimeHeartbeatSender.pas',
-  WakaTimeCLIInstaller in 'WakaTimeCLIInstaller.pas',
-  WakaTimeCLIInstallerThread in 'WakaTimeCLIInstallerThread.pas';
+  WakaSettingsForm in '..\src\WakaSettingsForm.pas' {WakaTimeSettingsForm},
+  WakaTimeCLIInstaller in '..\src\WakaTimeCLIInstaller.pas',
+  WakaTimeCLIInstallerThread in '..\src\WakaTimeCLIInstallerThread.pas',
+  WakaTimeHeartbeatSender in '..\src\WakaTimeHeartbeatSender.pas',
+  WakaTimeLogger in '..\src\WakaTimeLogger.pas',
+  WakaTimeNotifier in '..\src\WakaTimeNotifier.pas',
+  WakaTimeSendHeartbeatThread in '..\src\WakaTimeSendHeartbeatThread.pas',
+  WakaTimeSettings in '..\src\WakaTimeSettings.pas';
 
 end.

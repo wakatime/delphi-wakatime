@@ -36,10 +36,10 @@ const
   PluginVersion = '1.73.1'; // Replace with actual plugin version
 
   {$IFDEF DELPHI_11_3_ALEXANDRIA}
-  DelphiVersion = '10.3';
+  DelphiVersion = '11.3';
   {$ENDIF}
   {$IFDEF DELPHI_10_4_SYDNEY}
-  DelphiVersion = '10.3';
+  DelphiVersion = '10.4';
   {$ENDIF}
   {$IFDEF DELPHI_10_3_RIO}
   DelphiVersion = '10.3';
