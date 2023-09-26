@@ -22,12 +22,14 @@ constructor TWakaTimeCLIInstallerThread.Create(const CLIPath: string);
 begin
   inherited Create(False); // Create the thread in suspended state
   FreeOnTerminate := True; // Automatically deallocate memory on finish
+
   FInstaller := TWakaTimeCLIInstaller.Create(CLIPath);
 end;
 
 destructor TWakaTimeCLIInstallerThread.Destroy;
 begin
-  FInstaller.Free;
+  if Assigned(FInstaller) then
+   FInstaller.Free;
   inherited;
 end;
 
