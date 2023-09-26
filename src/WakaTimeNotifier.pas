@@ -224,6 +224,7 @@ var
   EditorServices: IOTAEditorServices;
   EditBuffer: IOTAEditBuffer;
   SourceEditor: IOTASourceEditor;
+  SourceEditorNotifier: IOTAEditorNotifier;
 begin
   Project := GetActiveProject;
 
@@ -239,10 +240,9 @@ begin
     if Assigned(EditBuffer) and Supports(EditBuffer, IOTASourceEditor,
       SourceEditor) then
     begin
-      TSourceEditorNotifier.Create(SourceEditor,
-        ProjectName).SendHeartbeat(SourceEditor.FileName,
+      if Supports(EditBuffer, IOTAEditorNotifier, SourceEditorNotifier) then
+        TSourceEditorNotifier(SourceEditorNotifier).SendHeartbeat(SourceEditor.FileName,
         SourceEditor.GetLinesInBuffer, False);
-      SourceEditor := nil;
     end;
   end;
 end;
@@ -251,12 +251,14 @@ procedure TIDENotifier.BeforeCompile(const Project: IOTAProject; var Cancel:
   Boolean);
 var
   SourceEditor: IOTASourceEditor;
+  SourceEditorNotifier: IOTAEditorNotifier;
 begin
   if Assigned(Project) then
   begin
     SourceEditor := Project.CurrentEditor as IOTASourceEditor;
-    TSourceEditorNotifier.Create(SourceEditor,
-      Project.FileName).SendHeartbeat(Project.FileName,
+
+    if Supports(SourceEditor, IOTAEditorNotifier, SourceEditorNotifier) then
+     TSourceEditorNotifier(SourceEditorNotifier).SendHeartbeat(Project.FileName,
       SourceEditor.GetLinesInBuffer, False);
   end;
 end;
@@ -268,6 +270,7 @@ var
   EditorServices: IOTAEditorServices;
   EditBuffer: IOTAEditBuffer;
   SourceEditor: IOTASourceEditor;
+  SourceEditorNotifier: IOTAEditorNotifier;
   Project: IOTAProject;
   ProjectName: string;
 begin
@@ -310,9 +313,10 @@ begin
           begin
             EditBuffer := EditorServices.TopBuffer;
             if Assigned(EditBuffer) and Supports(EditBuffer, IOTASourceEditor, SourceEditor) then
-            begin
-              TSourceEditorNotifier.Create(SourceEditor, ProjectName).SendHeartbeat(SourceEditor.FileName, SourceEditor.GetLinesInBuffer, False);
-            end;
+             begin
+              if Supports(EditBuffer, IOTAEditorNotifier, SourceEditorNotifier) then
+                  TSourceEditorNotifier(SourceEditorNotifier).SendHeartbeat(SourceEditor.FileName, SourceEditor.GetLinesInBuffer, False);
+             end;
           end;
         end;
     end;
