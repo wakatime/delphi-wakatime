@@ -123,7 +123,7 @@ end;
 procedure TSendHeartbeatThread.Execute;
 var
   Commands: TStringList;
-  CommandLine, executable: string;
+  CommandLine, CLIFileName: string;
   Operation: PChar;
   FileName: PChar;
   Parameters: PChar;
@@ -136,7 +136,7 @@ begin
     exit;
   end;
 
-  executable := Format('"%swakatime-cli.exe"', [FCLIPath]);
+  CLIFileName := Format('"%swakatime-cli.exe"', [FCLIPath]);
 
   // Prepare the command line
   Commands := TStringList.Create;
@@ -147,19 +147,19 @@ begin
     Commands.Add('--plugin "' + UserAgent + '"');
 
     CommandLine := ReplaceStr(Commands.Text, '=', '');
-    CommandLine := ReplaceStr(Commands.Text, #13#10, ' ');
+    CommandLine := ReplaceStr(CommandLine, #13#10, ' ');
 
     if FIsWrite then
       CommandLine := CommandLine + ' --write';
 
     // Set the parameters for ShellExecute
     Operation := 'open';
-    FileName := PChar(executable);
+    FileName := PChar(CLIFileName);
     Parameters := PChar(CommandLine);
     Directory := nil;
     ShowCommand := SW_HIDE; // Use SW_SHOW to show the command prompt window
 
-    TWakaTimeLogger.Log('Running: ' + executable);
+    TWakaTimeLogger.Log('Running: ' + CLIFileName);
     TWakaTimeLogger.Log('With commands: ' + CommandLine);
     try
       // Execute the command
