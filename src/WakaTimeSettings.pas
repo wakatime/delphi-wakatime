@@ -142,7 +142,7 @@ end;
 
 destructor TWakaTimeSettings.Destroy;
 begin
-  FreeAndNil(FWakaTimeInstaller);
+  FWakaTimeInstaller := nil;
   inherited;
 end;
 
