@@ -1,4 +1,6 @@
   {$IF CompilerVersion >= 35.0}
+    {$DEFINE DELPHI_12_0_ATHENS_UP}
+  {$ELSEIF CompilerVersion >= 35.0}
     {$DEFINE DELPHI_11_3_ALEXANDRIA_UP}
   {$ELSEIF CompilerVersion >= 34.0}
     {$DEFINE DELPHI_10_4_SYDNEY_UP}
@@ -46,7 +48,9 @@
     {$DEFINE DELPHI_6_UP}
   {$IFEND}
 
-{$IF CompilerVersion = 35.0}
+{$IF CompilerVersion = 36.0}
+  {$DEFINE DELPHI_12_0_ATHENS}
+{$ELSEIF CompilerVersion = 35.0}
   {$DEFINE DELPHI_11_3_ALEXANDRIA}
 {$ELSEIF CompilerVersion = 34.0}
   {$DEFINE DELPHI_10_4_SYDNEY}
