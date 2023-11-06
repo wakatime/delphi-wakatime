@@ -1,4 +1,4 @@
-  {$IF CompilerVersion >= 35.0}
+  {$IF CompilerVersion >= 36.0}
     {$DEFINE DELPHI_12_0_ATHENS_UP}
   {$ELSEIF CompilerVersion >= 35.0}
     {$DEFINE DELPHI_11_3_ALEXANDRIA_UP}
