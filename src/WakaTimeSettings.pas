@@ -13,9 +13,11 @@ type
     FPluginLogFileName: string;
     FCLIPath: string;
     FUserProfilePath: string;
+    FIDEPersonality: string;
     FWakaTimeInstaller: TWakaTimeCLIInstallerThread;
   private  
     function GetCLIInstalled: Boolean;
+    procedure DetermineIDEPersonality;
   public
     constructor Create;
     destructor Destroy; override;
@@ -29,6 +31,8 @@ type
 
     property CLIPath: string read FCLIPath;
     property CLIInstalled: Boolean read GetCLIInstalled;
+
+    property IDEPersonality: string read FIDEPersonality;
   end;
 
 
@@ -39,7 +43,7 @@ implementation
 {$I DelphiVersions.inc}
 
 uses
-  SysUtils, IniFiles;
+  ToolsApi, SysUtils, IniFiles;
 
 var
   _WakaSettings: TWakaTimeSettings = nil;
@@ -141,6 +145,7 @@ begin
   FUserProfilePath := GetEnvironmentVariable('USERPROFILE');
   FCLIPath := FUserProfilePath + '\.wakatime\';
   FWakaTimeInstaller := TWakaTimeCLIInstallerThread.Create(FCLIPath);
+  DetermineIDEPersonality;
 end;
 
 destructor TWakaTimeSettings.Destroy;
@@ -180,6 +185,38 @@ begin
     IniFile.Free;
   end;
 end;
+
+procedure TWakaTimeSettings.DetermineIDEPersonality;
+{$IFDEF DELPHI_2005_UP}
+var
+  Services: IOTAServices;
+  Personality: string;
+{$ENDIF}
+begin
+  FIDEPersonality := 'delphi'; // Default to Delphi personality
+
+  // Only attempt to call GetPersonality for Delphi versions that support it (Delphi 2005 and above)
+  {$IFDEF DELPHI_2005_UP}
+  if Supports(BorlandIDEServices, IOTAServices, Services) then
+  begin
+    try
+      Personality := Services.GetPersonality;
+      // The personality string usually contains "C++Builder" for C++ personalities
+      if Pos('C++Builder', Personality) > 0 then
+      begin
+        FIDEPersonality := 'cppbuilder';
+      end;
+    except
+      on E: Exception do
+      begin
+        // If there is an exception, it might be because the IDE does not support this check.
+        // We'll just keep the default Delphi personality in this case.
+      end;
+    end;
+  end;
+  {$ENDIF}
+end;
+
 
 initialization
 

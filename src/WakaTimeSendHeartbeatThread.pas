@@ -12,13 +12,15 @@ type
     FAPIKey: string;
     FFileName: string;
     FProjectName: string;
+    FPersonality: string;
     FIsFile: Boolean;
     FTotalLines: Integer;
     FIsWrite: Boolean;
+    function GetUserAgent: string;
   protected
     procedure Execute; override;
   public
-    constructor Create(CLIPath, APIKey, FileName, ProjectName: string;
+    constructor Create(CLIPath, APIKey, Personality, FileName, ProjectName: string;
       IsFile: Boolean; TotalLines: Integer; IsWrite: Boolean);
   end;
 
@@ -107,9 +109,8 @@ const
   {$IFDEF DELPHI_6}
   DelphiVersion = '6.0';
   {$ENDIF}
-  UserAgent = 'delphi/' + DelphiVersion + ' delphi-wakatime/' + PluginVersion;
 
-constructor TSendHeartbeatThread.Create(CLIPath, APIKey, FileName,
+constructor TSendHeartbeatThread.Create(CLIPath, APIKey, Personality, FileName,
   ProjectName: string; IsFile: Boolean; TotalLines: Integer; IsWrite: Boolean);
 begin
   inherited Create(False);
@@ -118,6 +119,7 @@ begin
   FAPIKey := APIKey;
   FFileName := FileName;
   FProjectName := ChangeFileExt(ProjectName, '');
+  FPersonality := Personality;
   FIsFile := IsFile;
   FTotalLines := TotalLines;
   FIsWrite := IsWrite;
@@ -147,7 +149,7 @@ begin
     Commands.Add('--entity "' + FFileName + '"');
     Commands.Add('--lines-in-file ' + IntToStr(FTotalLines));
     Commands.Add('--alternate-project "' + FProjectName + '"');
-    Commands.Add('--plugin "' + UserAgent + '"');
+    Commands.Add('--plugin "' + GetUserAgent + '"');
 
     CommandLine := ReplaceStr(Commands.Text, '=', '');
     CommandLine := ReplaceStr(CommandLine, #13#10, ' ');
@@ -181,5 +183,14 @@ begin
     Commands.Free;
   end;
 end;
+
+function TSendHeartbeatThread.GetUserAgent: string;
+begin
+  if FPersonality = 'cppbuilder' then
+    Result := 'delphi/' + DelphiVersion + ' cppbuilder-wakatime/' + PluginVersion
+  else
+    Result := 'delphi/' + DelphiVersion + ' delphi-wakatime/' + PluginVersion;
+end;
+
 
 end.
