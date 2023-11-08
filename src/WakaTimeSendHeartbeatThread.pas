@@ -35,6 +35,9 @@ uses
 const
   PluginVersion = '1.73.1'; // Replace with actual plugin version
 
+  {$IFDEF DELPHI_12_0_ATHENS}
+  DelphiVersion = '12.0';
+  {$ENDIF}
   {$IFDEF DELPHI_11_3_ALEXANDRIA}
   DelphiVersion = '11.3';
   {$ENDIF}

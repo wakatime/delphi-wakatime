@@ -10,6 +10,7 @@ The goal of this project is to provide a full integration with WakaTime with Del
 
 ## Currently supported and Tested IDE's
 
+- Delphi 12.0
 - Delphi 11.3
 - Delphi 10.2
 - Delphi XE2
@@ -33,6 +34,7 @@ You can also show support by showing on your repository that you use this lib on
 
 2- Open the project related to your IDE version: 
 
+- WakaTimePlugin12_0.dproj - For Delphi 12.0
 - WakaTimePlugin11_3.dproj - For Delphi 11.3
 - WakaTimePlugin10_2.dproj - For Delphi 10.2
 - WakaTimePluginXE2.dproj  - For Delphi XE2 
@@ -64,7 +66,7 @@ Before start close all projects opened on your Delphi IDE.
 
 3- Right click on the project file and select the option Add... after that select all .pas files inside the plugin folder and hit the Open button. This will add all the files to this new package. 
 
-4- Right click on the Requires section of the package and click on the option Add Reference, click on the Browse button, and go to the directory "c:\program files (x86)\embarcadero\studio\\**{YourDelphiVersion}**\lib\Win32\release" and select the file designide.dcp then click on ok and ok again to add it to the package.
+4- Right click on the Requires section of the package and click on the option Add Reference, click on the Browse button, and go to the directory "C:\Program Files (x86)\Embarcadero\Studio\\**{YourDelphiVersion}**\lib\win32\release" and select the file designide.dcp then click on ok and ok again to add it to the package.
 
 5- Now just save again and build your new plugin project, the IDE might ask to add a reference to RTL, just click on ok and continue the build.
 
