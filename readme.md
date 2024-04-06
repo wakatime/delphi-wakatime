@@ -10,6 +10,7 @@ The goal of this project is to provide a full integration with WakaTime with Del
 
 ## Currently supported and Tested IDE's
 
+- Delphi 12.1
 - Delphi 12.0
 - Delphi 11.3
 - Delphi 10.0
