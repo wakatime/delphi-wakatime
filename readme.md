@@ -10,6 +10,7 @@ The goal of this project is to provide a full integration with WakaTime with Del
 
 ## Currently supported and Tested IDE's
 
+- Delphi 12.1
 - Delphi 12.0
 - Delphi 11.3
 - Delphi 10.0
@@ -35,7 +36,7 @@ You can also show support by showing on your repository that you use this lib on
 
 2- Open the project related to your IDE version: 
 
-- WakaTimePlugin12_0.dproj - For Delphi 12.0
+- WakaTimePlugin12_0.dproj - For Delphi 12.0 and Delphi 12.1
 - WakaTimePlugin11_3.dproj - For Delphi 11.3
 - WakaTimePlugin10.dproj   - For Delphi 10.0
 - WakaTimePlugin10_2.dproj - For Delphi 10.2
