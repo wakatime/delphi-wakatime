@@ -22,9 +22,11 @@ implementation
 uses WakaTimeSettings;
 
 function TWakaTimeHeartbeatSender.EnoughTimeHasPassed: Boolean;
+const
+  HeartbeatIntervalMinutes = 2; // default interval before sending non-write heartbeats
 begin
-  Result := Now - FLastSentTime > EncodeTime(0, 2, 0, 0);  // 2 minutes
-  TWakaTimeLogger.Log('EnoughtTimeHasPassed: '+ BoolToStr(Result, True));
+  Result := Now - FLastSentTime > EncodeTime(0, HeartbeatIntervalMinutes, 0, 0);
+  TWakaTimeLogger.Log('EnoughTimeHasPassed: '+ BoolToStr(Result, True));
 end;
 
 function TWakaTimeHeartbeatSender.CurrentlyFocusedFileHasChanged(const FileName: string): Boolean;
